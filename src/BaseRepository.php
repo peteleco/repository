@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Repositories
  */
-abstract class Repository implements IBaseRepository
+abstract class BaseRepository implements IBaseRepository
 {
 
     /**
