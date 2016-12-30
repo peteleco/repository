@@ -1,8 +1,6 @@
 <?php namespace Peteleco\Repository;
 
-
 use Peteleco\QueryFilter\BaseQueryFilter;
-use Peteleco\Repository\Contracts\IBaseRepository;
 use Peteleco\Repository\Contracts\IRepository;
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\Container\Container as App;
@@ -14,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package App\Repositories
  */
-abstract class BaseRepository implements IBaseRepository
+abstract class BaseRepository
 {
 
     /**
