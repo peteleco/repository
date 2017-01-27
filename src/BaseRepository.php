@@ -1,18 +1,19 @@
 <?php namespace Peteleco\Repository;
 
-use Peteleco\QueryFilter\BaseQueryFilter;
-use Peteleco\Repository\Contracts\IRepository;
 use Illuminate\Cache\Repository as Cache;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Peteleco\QueryFilter\BaseQueryFilter;
+use Peteleco\Repository\Contracts\IBaseRepository;
+use Peteleco\Repository\Contracts\IRepository;
 
 /**
  * Class Repository
  *
  * @package App\Repositories
  */
-abstract class BaseRepository
+abstract class BaseRepository implements IBaseRepository
 {
 
     /**
@@ -50,8 +51,23 @@ abstract class BaseRepository
     {
         $this->app   = $app;
         $this->cache = $cache;
-        $this->setModel($this->modelInstance($this->modelReference()));
+        if (! $this->modelReference()) {
+            $this->setModel($this->modelInstance($this->modelReference()));
+        }
+
         $this->setUp();
+    }
+
+    /**
+     * If this repository has a model reference,
+     * should be override
+     * Default has no model reference
+     *
+     * @return bool
+     */
+    public function modelReference()
+    {
+        return false;
     }
 
     /**
@@ -100,7 +116,7 @@ abstract class BaseRepository
      * $filter->model{NAME}(${model});
      * $filter->only{Something}();
      *
-     * @param Builder     $query
+     * @param Builder         $query
      * @param BaseQueryFilter $filter
      */
     public function queryFilter(Builder $query, BaseQueryFilter $filter)
