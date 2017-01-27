@@ -5,8 +5,6 @@ use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Peteleco\QueryFilter\BaseQueryFilter;
-use Peteleco\Repository\Contracts\IBaseRepository;
-use Peteleco\Repository\Contracts\IRepository;
 
 /**
  * Class Repository

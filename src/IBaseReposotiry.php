@@ -1,4 +1,4 @@
-<?php namespace Peteleco\Repository\Contracts;
+<?php namespace Peteleco\Repository;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
