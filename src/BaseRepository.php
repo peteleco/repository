@@ -11,7 +11,7 @@ use Peteleco\QueryFilter\BaseQueryFilter;
  *
  * @package App\Repositories
  */
-abstract class BaseRepository implements IBaseRepository
+abstract class BaseRepository
 {
 
     /**
