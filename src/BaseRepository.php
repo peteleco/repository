@@ -49,7 +49,7 @@ abstract class BaseRepository
     {
         $this->app   = $app;
         $this->cache = $cache;
-        if (! $this->modelReference()) {
+        if ($this->modelReference()) {
             $this->setModel($this->modelInstance($this->modelReference()));
         }
 
