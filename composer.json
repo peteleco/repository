@@ -21,7 +21,8 @@
   ],
   "autoload": {
     "psr-4": {
-      "Peteleco\\Repository\\": "src/"
+      "Peteleco\\Repository\\": "src/",
+      "Peteleco\\Repository\\Contracts": "src/Contracts"
     }
   },
   "config": {
