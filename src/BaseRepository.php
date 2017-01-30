@@ -123,4 +123,17 @@ abstract class BaseRepository
         // Remove request fields passed through instance
         $filter->resetRequest();
     }
+
+    /**
+     * Retorna o nome principal do cache
+     *
+     * @param       $method
+     * @param array $params
+     *
+     * @return mixed
+     */
+    public function getCacheKey($method, array $params = [])
+    {
+        return md5($method . serialize($params));
+    }
 }
