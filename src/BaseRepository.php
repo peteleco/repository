@@ -1,6 +1,5 @@
 <?php namespace Peteleco\Repository;
 
-use Illuminate\Cache\Repository as Cache;
 use Illuminate\Container\Container as App;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -18,22 +17,7 @@ abstract class BaseRepository
      * @var Model
      */
     protected $model;
-    /**
-     * @var CacheRepository
-     */
-    protected $cache;
-    /**
-     * In minutes
-     *
-     * @var array
-     */
-    protected $cacheTime = [
-        'fast'    => 1,
-        'quick'   => 5,
-        'regular' => 10,
-        'long'    => 60,
-        'halfDay' => 720
-    ];
+
     /**
      * @var App
      */
@@ -42,13 +26,12 @@ abstract class BaseRepository
     /**
      * Repository constructor.
      *
-     * @param App   $app
-     * @param Cache $cache
+     * @param App $app
      */
-    public function __construct(App $app, Cache $cache)
+    public function __construct(App $app)
     {
-        $this->app   = $app;
-        $this->cache = $cache;
+        $this->app = $app;
+
         if ($this->modelReference()) {
             $this->setModel($this->modelInstance($this->modelReference()));
         }
@@ -122,18 +105,5 @@ abstract class BaseRepository
         $filter->setBuilder($query);
         // Remove request fields passed through instance
         $filter->resetRequest();
-    }
-
-    /**
-     * Retorna o nome principal do cache
-     *
-     * @param       $method
-     * @param array $params
-     *
-     * @return mixed
-     */
-    public function getCacheKey($method, array $params = [])
-    {
-        return md5($method . serialize($params));
     }
 }
